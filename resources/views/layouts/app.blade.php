@@ -10,9 +10,21 @@
     <!-- Header / Navbar -->
     <header class="navbar">
         <div class="navbar-container">
-            <h1>Kasir Admin</h1>
+            @if (auth()->user()->role === 'admin')
+                <h1>Kasir Admin</h1>
+            @elseif (auth()->user()->role === 'petugas')
+                <h1>Kasir Petugas</h1>
+            @else
+                <h1>Kasir Pemilik</h1>
+            @endif
             <nav>
-                <ul>
+                <button class="navbar-toggle" id="navbar-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <ul id="navbar-menu">
+                    @if (auth()->user()->role === 'admin')
                     <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                     <li><a href="/">Transaksi</a></li>
                     <li><a href="/">Produk</a></li>
@@ -23,6 +35,26 @@
                             @csrf
                         </form>
                     </li>
+                    @elseif (auth()->user()->role === 'petugas')
+                    <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                    <li><a href="/">Transaksi</a></li>
+                    <li><a href="/">Laporan</a></li>
+                    <li>
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                    @else
+                    <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                    <li><a href="/">Laporan</a></li>
+                    <li>
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                    @endif
                 </ul>
             </nav>
         </div>
@@ -39,5 +71,15 @@
     <footer>
         <p>&copy; 2025 Kasir Aplikasi - Semua hak dilindungi</p>
     </footer>
+
+    <script>
+        const toggleButton = document.querySelector('.navbar-toggle');
+        const navLinks = document.querySelector('nav ul');
+
+        toggleButton.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+
 </body>
 </html>

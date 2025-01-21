@@ -39,12 +39,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 .navbar h1 {
     font-size: 1.8rem;
     font-weight: bold;
     margin: 0;
+    flex-grow: 1; /* Menyediakan ruang untuk tombol toggle di samping teks */
 }
 
 nav ul {
@@ -68,6 +70,24 @@ nav ul li a {
 nav ul li a:hover {
     background-color: #0056b3;
     color: #fff;
+}
+
+/* Tombol toggle untuk mobile */
+.navbar-toggle {
+    display: none;
+    flex-direction: column;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 101;
+    margin-left: 15px; /* Menambahkan jarak antara tombol toggle dan teks */
+}
+
+.navbar-toggle .bar {
+    width: 20px; /* Memperkecil ukuran toggle */
+    height: 3px; /* Menyesuaikan ketebalan garis */
+    background-color: white;
+    margin: 4px 0; /* Menambah jarak antara garis */
 }
 
 /* Main Content */
@@ -100,34 +120,28 @@ footer {
     width: 100%;
 }
 
-/* Tombol Logout */
-.logout-btn {
-    background-color: #dc3545;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 4px;
-    text-align: center;
-    display: inline-block;
-    cursor: pointer;
-    margin-top: 20px;
-    font-size: 16px;
-}
-
-.logout-btn:hover {
-    background-color: #c82333;
-}
-
 /* Responsif untuk tablet */
 @media (max-width: 1024px) {
     .navbar-container {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
 
     nav ul {
         flex-direction: column;
         padding: 0;
         margin-top: 10px;
+        display: none; /* Sembunyikan menu di tablet */
+    }
+
+    nav ul.active {
+        display: block; /* Tampilkan menu ketika toggle aktif */
+        position: absolute;
+        top: 60px; /* Menyesuaikan posisi navbar di bawah header */
+        left: 0;
+        background-color: #007bff;
+        width: 100%;
     }
 
     nav ul li {
@@ -144,16 +158,16 @@ footer {
         font-size: 2.2rem;
     }
 
-    .logout-btn {
-        font-size: 14px;
+    .navbar-toggle {
+        display: flex; /* Menampilkan tombol toggle pada mobile */
     }
 }
 
 /* Responsif untuk mobile */
 @media (max-width: 768px) {
     .navbar-container {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        align-items: center;
         padding: 0 20px;
     }
 
