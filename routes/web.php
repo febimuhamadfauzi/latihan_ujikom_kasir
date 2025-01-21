@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\PemilikController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 
 // Halaman Login dan Logout
@@ -26,6 +27,12 @@ Route::middleware('auth')->get('/dashboard', function () {
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
+
+    // Rute ke halaman produk admin
+    Route::get('/admin/products', [ProductController::class, 'index'])->name('admin.products.index');
+
+    // CRUD Produk - Admin
+    Route::resource('admin/product', ProductController::class);
 });
 
 // Petugas Routes (hanya petugas yang bisa mengaksesnya)

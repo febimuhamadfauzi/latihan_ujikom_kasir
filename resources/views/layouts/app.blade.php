@@ -27,7 +27,7 @@
                     @if (auth()->user()->role === 'admin')
                     <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                     <li><a href="/">Transaksi</a></li>
-                    <li><a href="/">Produk</a></li>
+                    <li><a href="{{ route('admin.products.index') }}">Produk</a></li>
                     <li><a href="/">Laporan</a></li>
                     <li>
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
