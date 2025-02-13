@@ -25,11 +25,20 @@ class ProductController extends Controller
     {
         // Validasi input dari form
         $request->validate([
-            'product_code' => 'required|string|max:255|unique:products,product_code',
+            'product_code' => 'required|string|min:0|unique:products,product_code',
             'name' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'stock' => 'required|integer',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
             'category' => 'required|string|max:100',
+        ],[
+            'product_code.required' => 'no produk wajib diisi',
+            'product_code.min' => 'no produk tidak boleh minus',
+            'product_code.unique' => 'no produk tidak boleh sama',
+            'price.min' => 'harga tidak boleh mines',
+            'price.required' => 'harga wajib di isi',
+            'stock.required' => 'stok wajib di isi',
+            'stock.min' => 'stok tidak boleh mines',
+
         ]);
 
         // Menyimpan produk baru ke database
@@ -56,11 +65,19 @@ class ProductController extends Controller
     {
         // Validasi input dari form
         $request->validate([
-            'product_code' => 'required|string|max:255|unique:products,product_code,' . $product->id,
+            'product_code' => 'required|string|min:0|unique:products,product_code,' . $product->id,
             'name' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'stock' => 'required|integer',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
             'category' => 'required|string|max:100',
+        ],[
+            'product_code.required' => 'no produk wajib diisi',
+            'product_code.min' => 'no produk tidak boleh minus',
+            'product_code.unique' => 'no produk tidak boleh sama',
+            'price.min' => 'harga tidak boleh mines',
+            'price.required' => 'harga wajib di isi',
+            'stock.required' => 'stok wajib di isi',
+            'stock.min' => 'stok tidak boleh mines',
         ]);
 
         // Update data produk

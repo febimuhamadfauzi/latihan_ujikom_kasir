@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@include('komponen.pesan')
 <div class="container">
     <h1 class="mb-4">Edit Produk</h1>
 
@@ -10,7 +11,7 @@
 
         <div class="mb-3">
             <label for="product_code" class="form-label">Kode Produk</label>
-            <input type="text" class="form-control" id="product_code" name="product_code" value="{{ old('product_code', $product->product_code) }}" required>
+            <input type="number" class="form-control" id="product_code" name="product_code" value="{{ old('product_code', $product->product_code) }}" required>
         </div>
 
         <div class="mb-3">
