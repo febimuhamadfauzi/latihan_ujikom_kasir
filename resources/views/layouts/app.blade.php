@@ -27,6 +27,7 @@
                 <ul id="navbar-menu">
                     @if (auth()->user()->role === 'admin')
                     <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                    <li><a href="/">Petugas</a></li>
                     <li><a href="/">Transaksi</a></li>
                     <li><a href="{{ route('admin.products.index') }}">Produk</a></li>
                     <li><a href="{{ route('admin.payment-methods.index')}}">Jenis Pembayaran</a></li>

@@ -8,6 +8,14 @@
 <div class="container">
     <h1 class="page-title mb-4">Daftar Produk</h1>
 
+    <!-- Alert sukses untuk tambah atau edit -->
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <!-- Form Pencarian -->
     <form action="{{ route('product.index') }}" method="GET" class="mb-3">
         <div class="input-group">

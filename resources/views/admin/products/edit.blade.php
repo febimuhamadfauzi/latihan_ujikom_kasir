@@ -78,7 +78,7 @@
     <h1 class="mb-4">Edit Produk</h1>
 
     <div class="card shadow-sm p-4">
-        <form action="{{ route('product.update', $product->id) }}" method="POST">
+        <form action="{{ route('product.update', $product->id) }}" method="POST" onsubmit="return confirmUpdate();">
             @csrf
             @method('PUT')
             <div class="row">
@@ -108,10 +108,10 @@
                 <label for="category" class="form-label">Kategori</label>
                 <select class="form-control" id="category" name="category" required>
                     <option value="">Pilih Kategori</option>
-                    <option value="Makanan">Makanan</option>
-                    <option value="Minuman">Minuman</option>
-                    <option value="Elektronik">Elektronik</option>
-                    <option value="Pakaian">Pakaian</option>
+                    <option value="Makanan" {{ $product->category == 'Makanan' ? 'selected' : '' }}>Makanan</option>
+                    <option value="Minuman" {{ $product->category == 'Minuman' ? 'selected' : '' }}>Minuman</option>
+                    <option value="Elektronik" {{ $product->category == 'Elektronik' ? 'selected' : '' }}>Elektronik</option>
+                    <option value="Pakaian" {{ $product->category == 'Pakaian' ? 'selected' : '' }}>Pakaian</option>
                 </select>
             </div>
 
@@ -122,4 +122,12 @@
         </form>
     </div>
 </div>
+
+<!-- JavaScript untuk Konfirmasi -->
+<script>
+function confirmUpdate() {
+    return confirm("Apakah Anda yakin ingin memperbarui produk ini?");
+}
+</script>
+
 @endsection
