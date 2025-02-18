@@ -25,7 +25,7 @@
     </form>
 
     <!-- Tombol Tambah Produk -->
-    <a href="{{ route('product.create') }}" class="btn btn-primary mb-3">Tambah Produk</a>
+    <a href="{{ route('product.create') }}" class="btn btn-success mb-3">+ Tambah Produk</a>
 
     <!-- Tabel Daftar Produk -->
     <table class="table table-bordered">

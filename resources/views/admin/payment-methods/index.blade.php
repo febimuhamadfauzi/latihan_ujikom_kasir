@@ -4,7 +4,7 @@
     <h2>Daftar Metode Pembayaran</h2>
 
     @if(Auth::user()->role === 'admin')
-        <a href="{{ route('admin.payment-methods.create') }}" class="btn btn-primary">Tambah Metode Pembayaran</a>
+        <a href="{{ route('admin.payment-methods.create') }}" class="btn btn-success">+ Tambah Metode Pembayaran</a>
     @endif
 
     <table class="table">
