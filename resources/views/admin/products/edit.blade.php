@@ -73,6 +73,7 @@
 @endsection
 
 @section('content')
+@include('komponen.pesan')
 <div class="container">
     <h1 class="mb-4">Edit Produk</h1>
 
@@ -80,13 +81,11 @@
         <form action="{{ route('product.update', $product->id) }}" method="POST">
             @csrf
             @method('PUT')
-
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="product_code" class="form-label">Kode Produk</label>
                     <input type="text" class="form-control" id="product_code" name="product_code" value="{{ old('product_code', $product->product_code) }}" required>
                 </div>
-
                 <div class="col-md-6 mb-3">
                     <label for="name" class="form-label">Nama Produk</label>
                     <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $product->name) }}" required>

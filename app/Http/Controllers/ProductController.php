@@ -7,11 +7,20 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    // Menampilkan daftar produk
-    public function index()
+    // Menampilkan daftar produk dengan pencarian dan pagination
+    public function index(Request $request)
     {
-        $products = Product::all(); // Ambil semua produk dari database
-        return view('admin.products.index', compact('products')); // Tampilkan ke view index
+        $query = Product::query();
+
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->where('name', 'like', "%$search%")
+                  ->orWhere('product_code', 'like', "%$search%");
+        }
+
+        $products = $query->paginate(3)->appends(['search' => $request->search]);
+
+        return view('admin.products.index', compact('products'));
     }
 
     // Menampilkan form untuk menambah produk baru
@@ -25,11 +34,19 @@ class ProductController extends Controller
     {
         // Validasi input dari form
         $request->validate([
-            'product_code' => 'required|string|max:255|unique:products,product_code',
+            'product_code' => 'required|string|min:0|unique:products,product_code',
             'name' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'stock' => 'required|integer',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
             'category' => 'required|string|max:100',
+        ], [
+            'product_code.required' => 'No produk wajib diisi',
+            'product_code.min' => 'No produk tidak boleh minus',
+            'product_code.unique' => 'No produk tidak boleh sama',
+            'price.min' => 'Harga tidak boleh minus',
+            'price.required' => 'Harga wajib diisi',
+            'stock.required' => 'Stok wajib diisi',
+            'stock.min' => 'Stok tidak boleh minus',
         ]);
 
         // Menyimpan produk baru ke database
@@ -56,11 +73,19 @@ class ProductController extends Controller
     {
         // Validasi input dari form
         $request->validate([
-            'product_code' => 'required|string|max:255|unique:products,product_code,' . $product->id,
+            'product_code' => 'required|string|min:0|unique:products,product_code,' . $product->id,
             'name' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'stock' => 'required|integer',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
             'category' => 'required|string|max:100',
+        ], [
+            'product_code.required' => 'No produk wajib diisi',
+            'product_code.min' => 'No produk tidak boleh minus',
+            'product_code.unique' => 'No produk tidak boleh sama',
+            'price.min' => 'Harga tidak boleh minus',
+            'price.required' => 'Harga wajib diisi',
+            'stock.required' => 'Stok wajib diisi',
+            'stock.min' => 'Stok tidak boleh minus',
         ]);
 
         // Update data produk

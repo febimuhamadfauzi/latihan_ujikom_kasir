@@ -8,6 +8,14 @@
 <div class="container">
     <h1 class="page-title mb-4">Daftar Produk</h1>
 
+    <!-- Form Pencarian -->
+    <form action="{{ route('product.index') }}" method="GET" class="mb-3">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="Cari produk..." value="{{ request('search') }}">
+            <button type="submit" class="btn btn-primary">Cari</button>
+        </div>
+    </form>
+
     <!-- Tombol Tambah Produk -->
     <a href="{{ route('product.create') }}" class="btn btn-primary mb-3">Tambah Produk</a>
 
@@ -34,8 +42,8 @@
                     <td>
                         <a href="{{ route('product.edit', $product->id) }}" class="btn btn-warning">Edit</a>
 
-                        <!-- Form untuk Hapus Produk -->
-                        <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline;">
+                        <!-- Form untuk Hapus Produk dengan Konfirmasi -->
+                        <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus produk ini?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Hapus</button>
@@ -45,5 +53,10 @@
             @endforeach
         </tbody>
     </table>
+
+    <!-- Pagination -->
+    <div class="d-flex justify-content-center">
+        {{ $products->appends(['search' => request('search')])->links('vendor.pagination.bootstrap-5') }}
+    </div>
 </div>
 @endsection

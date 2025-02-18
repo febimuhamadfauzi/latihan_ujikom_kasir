@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kasir Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     @vite(['resources/css/style.css'])
 </head>
 <body>
@@ -28,6 +29,7 @@
                     <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                     <li><a href="/">Transaksi</a></li>
                     <li><a href="{{ route('admin.products.index') }}">Produk</a></li>
+                    <li><a href="{{ route('admin.payment-methods.index')}}">Jenis Pembayaran</a></li>
                     <li><a href="/">Laporan</a></li>
                     <li>
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
