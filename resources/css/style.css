@@ -33,6 +33,7 @@ body {
     left: 0;
     width: 100%;
     z-index: 100;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-container {
@@ -46,9 +47,10 @@ body {
     font-size: 1.8rem;
     font-weight: bold;
     margin: 0;
-    flex-grow: 1; /* Menyediakan ruang untuk tombol toggle di samping teks */
+    flex-grow: 1;
 }
 
+/* Navigasi */
 nav ul {
     list-style-type: none;
     display: flex;
@@ -63,13 +65,14 @@ nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 18px;
-    padding: 10px;
+    padding: 10px 15px;
     border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.2s;
 }
 
 nav ul li a:hover {
     background-color: #0056b3;
-    color: #fff;
+    transform: scale(1.05);
 }
 
 /* Tombol toggle untuk mobile */
@@ -80,23 +83,24 @@ nav ul li a:hover {
     background: transparent;
     cursor: pointer;
     z-index: 101;
-    margin-left: 15px; /* Menambahkan jarak antara tombol toggle dan teks */
+    margin-left: 15px;
 }
 
 .navbar-toggle .bar {
-    width: 20px; /* Memperkecil ukuran toggle */
-    height: 3px; /* Menyesuaikan ketebalan garis */
+    width: 25px;
+    height: 3px;
     background-color: white;
-    margin: 4px 0; /* Menambah jarak antara garis */
+    margin: 5px 0;
 }
 
 /* Main Content */
 .main-content {
-    margin-top: 70px; /* Menyesuaikan dengan tinggi navbar */
+    margin-top: 70px;
     padding: 40px;
     width: 100%;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
     flex: 1;
 }
 
@@ -106,9 +110,73 @@ nav ul li a:hover {
     margin-bottom: 20px;
 }
 
-.main-content p {
-    font-size: 1.2rem;
-    color: #555;
+/* Tabel Produk */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table thead {
+    background: #007bff;
+    color: white;
+}
+
+.table th, .table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table tbody tr:hover {
+    background: rgba(0, 123, 255, 0.1);
+}
+
+.table th {
+    text-transform: uppercase;
+}
+
+/* Tombol */
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+.btn-warning {
+    background: #ffc107;
+    color: black;
+}
+
+.btn-warning:hover {
+    background: #e0a800;
+    transform: scale(1.05);
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+    transform: scale(1.05);
 }
 
 /* Footer */
@@ -118,6 +186,7 @@ footer {
     text-align: center;
     padding: 20px;
     width: 100%;
+    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsif untuk tablet */
@@ -132,13 +201,13 @@ footer {
         flex-direction: column;
         padding: 0;
         margin-top: 10px;
-        display: none; /* Sembunyikan menu di tablet */
+        display: none;
     }
 
     nav ul.active {
-        display: block; /* Tampilkan menu ketika toggle aktif */
+        display: block;
         position: absolute;
-        top: 60px; /* Menyesuaikan posisi navbar di bawah header */
+        top: 60px;
         left: 0;
         background-color: #007bff;
         width: 100%;
@@ -150,16 +219,12 @@ footer {
     }
 
     .main-content {
-        margin-top: 100px; /* Memberikan lebih banyak ruang untuk navbar */
+        margin-top: 100px;
         padding: 30px;
     }
 
-    .main-content h1 {
-        font-size: 2.2rem;
-    }
-
     .navbar-toggle {
-        display: flex; /* Menampilkan tombol toggle pada mobile */
+        display: flex;
     }
 }
 
@@ -183,7 +248,7 @@ footer {
     }
 
     .main-content {
-        margin-top: 100px; /* Memberikan ruang untuk navbar */
+        margin-top: 100px;
         padding: 20px;
     }
 
